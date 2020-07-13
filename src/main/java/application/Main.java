@@ -23,7 +23,7 @@ public class Main extends Application {
         BorderPane borderPane = loader.load();
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle(bundle.getString("tittle.application"));
+        primaryStage.setTitle(bundle.getString("applicationTitle"));
         primaryStage.show();
     }
 }

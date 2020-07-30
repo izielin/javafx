@@ -8,21 +8,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.TopMenuButtonsController">
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.TopMenuButtonsController">
    <children>
-      <ToggleButton mnemonicParsing="false" onAction="#openLibrary" prefHeight="40.0" prefWidth="150.0" text="%library">
+      <ToggleButton mnemonicParsing="false" onAction="#openLibrary" prefHeight="40.0" prefWidth="150.0" text="%navigation.library">
          <toggleGroup>
             <ToggleGroup fx:id="toggleButtons" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" onAction="#openList" prefHeight="40.0" prefWidth="150.0" text="%listOfBooks" toggleGroup="$toggleButtons" />
-      <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefHeight="40.0" prefWidth="150.0" text="%statistics" toggleGroup="$toggleButtons" />
-      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addBook" prefHeight="32.0" prefWidth="150.0" text="%addNewBook">
+      <ToggleButton mnemonicParsing="false" onAction="#openList" prefHeight="40.0" prefWidth="150.0" text="%navigation.listOfBooks" toggleGroup="$toggleButtons" />
+      <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefHeight="40.0" prefWidth="150.0" text="%navigation.statistics" toggleGroup="$toggleButtons" />
+      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addBook" prefHeight="32.0" prefWidth="150.0" text="%navigation.newBook">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../icons/book.png" />
             </ImageView>
          </graphic></Button>
+      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="32.0" prefWidth="150.0" text="%category.add">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/list.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

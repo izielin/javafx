@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
    <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="60.0" prefWidth="850.0" BorderPane.alignment="CENTER">
          <MenuBar>
            <menus>
-             <Menu mnemonicParsing="false" text="%menuBar.MenuOne">
+             <Menu mnemonicParsing="false" text="%menuBar.file">
                <items>
-                 <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%menuBar.menuItemOne" />
+                 <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%menuBar.close" />
                </items>
              </Menu>
-             <Menu mnemonicParsing="false" text="%menuBar.MenuTwo">
+             <Menu mnemonicParsing="false" text="%menuBar.edit">
                   <items>
                      <RadioMenuItem mnemonicParsing="false" onAction="#setCaspian" text="Caspian">
                         <toggleGroup>
@@ -29,12 +29,12 @@
                      </RadioMenuItem>
                      <RadioMenuItem mnemonicParsing="false" onAction="#setModena" selected="true" text="Modena" toggleGroup="$styleGroup" />
                      <SeparatorMenuItem mnemonicParsing="false" />
-                     <CheckMenuItem mnemonicParsing="false" onAction="#setAlwaysOnTop" text="%menuBar.checkboxOne" />
+                     <CheckMenuItem mnemonicParsing="false" onAction="#setAlwaysOnTop" text="%menuBar.checkbox" />
                   </items>
              </Menu>
-             <Menu mnemonicParsing="false" text="%menuBar.MenuThree">
+             <Menu mnemonicParsing="false" text="%menuBar.help">
                <items>
-                 <MenuItem mnemonicParsing="false" onAction="#showAbout" text="%menuBar.menuItemTwo" />
+                 <MenuItem mnemonicParsing="false" onAction="#showAbout" text="%menuBar.about" />
                </items>
              </Menu>
            </menus>

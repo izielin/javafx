@@ -1,5 +1,6 @@
 package application;
 
+import application.database.dbutils.DbManager;
 import application.utils.FxmlUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,5 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(FxmlUtils.getResourceBundle().getString("applicationTitle"));
         primaryStage.show();
+
+        DbManager.initDatabase();
     }
 }

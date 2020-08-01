@@ -67,6 +67,15 @@ public abstract class CommonDao {
         return null;
     }
 
+    public <T extends BaseModel, I> void deleteById(Class<T> cls, Integer id) {
+        try {
+            Dao<T, I> dao = getDao(cls);
+            dao.deleteById((I) id);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
+
     public <T extends BaseModel, I> QueryBuilder<T, I> getQueryBuilder(Class<T> cls) {
         Dao<T, I> dao = getDao(cls);
         return dao.queryBuilder();

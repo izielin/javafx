@@ -14,9 +14,10 @@
          <children>
             <Label text="%category.add" />
             <TextField fx:id="categoryTextField" />
-            <Button fx:id="categoryAddButton" mnemonicParsing="false" onAction="#addCategoryOnAction" text="%category.button" />
+            <Button fx:id="categoryAddButton" mnemonicParsing="false" onAction="#addCategoryOnAction" text="%category.buttonAdd" />
             <Label text="%category.choose" />
-            <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
+            <ComboBox fx:id="categoryComboBox" prefWidth="150.0" onAction="#onActionComboBo" />
+            <Button fx:id="categoryDeleteButton" mnemonicParsing="false" onAction="#deleteCategoryOnAction" text="%category.buttonDelete" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

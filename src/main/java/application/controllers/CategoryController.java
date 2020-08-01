@@ -3,12 +3,16 @@ package application.controllers;
 
 import application.modelfx.CategoryFx;
 import application.modelfx.CategoryModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class CategoryController {
+
+    @FXML
+    public Button categoryDeleteButton;
 
     @FXML
     private Button categoryAddButton;
@@ -23,15 +27,26 @@ public class CategoryController {
     @FXML
     public void initialize() {
         this.categoryModel = new CategoryModel();
+        this.categoryModel.init();
+        this.categoryComboBox.setItems(this.categoryModel.getCategoryList());
         initBindings();
     }
 
     private void initBindings() {
-        categoryAddButton.disableProperty().bind(categoryTextField.textProperty().isEmpty());
+        this.categoryAddButton.disableProperty().bind(categoryTextField.textProperty().isEmpty());
+        this.categoryDeleteButton.disableProperty().bind(this.categoryModel.categoryProperty().isNull());
     }
 
     public void addCategoryOnAction() {
         categoryModel.saveCategoryInDataBase(categoryTextField.getText());
         categoryTextField.clear();
+    }
+
+    public void deleteCategoryOnAction() {
+        this.categoryModel.deleteCategoryById();
+    }
+
+    public void onActionComboBo() {
+        this.categoryModel.setCategory(this.categoryComboBox.getSelectionModel().getSelectedItem());
     }
 }

@@ -36,6 +36,15 @@ public class CategoryModel {
 
     }
 
+    public void updateCategoryInDataBase() {
+        CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
+        Category tempCategory= categoryDao.findById(Category.class, getCategory().getId());
+        tempCategory.setName(getCategory().getName());
+        categoryDao.createOrUpdate(tempCategory);
+        DbManager.closeConnectionSource();
+        init();
+    }
+
     public void saveCategoryInDataBase(String name) {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         Category category = new Category();

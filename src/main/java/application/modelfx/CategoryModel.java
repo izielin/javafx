@@ -3,6 +3,7 @@ package application.modelfx;
 import application.database.dao.CategoryDao;
 import application.database.dbutils.DbManager;
 import application.database.models.Category;
+import application.utils.exceptions.ApplicationException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ public class CategoryModel {
     private ObservableList<CategoryFx> categoryList = FXCollections.observableArrayList();
     private ObjectProperty<CategoryFx> category = new SimpleObjectProperty<>();
 
-    public void init() {
+    public void init() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         List<Category> categories = categoryDao.queryForAll(Category.class);
         this.categoryList.clear();
@@ -28,7 +29,7 @@ public class CategoryModel {
         DbManager.closeConnectionSource();
     }
 
-    public void deleteCategoryById() {
+    public void deleteCategoryById() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         categoryDao.deleteById(Category.class, category.getValue().getId());
         init();
@@ -36,7 +37,7 @@ public class CategoryModel {
 
     }
 
-    public void updateCategoryInDataBase() {
+    public void updateCategoryInDataBase() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         Category tempCategory= categoryDao.findById(Category.class, getCategory().getId());
         tempCategory.setName(getCategory().getName());
@@ -45,7 +46,7 @@ public class CategoryModel {
         init();
     }
 
-    public void saveCategoryInDataBase(String name) {
+    public void saveCategoryInDataBase(String name) throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         Category category = new Category();
         category.setName(name);

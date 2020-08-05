@@ -4,6 +4,7 @@ package application.controllers;
 import application.modelfx.CategoryFx;
 import application.modelfx.CategoryModel;
 import application.utils.DialogsUtils;
+import application.utils.exceptions.ApplicationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,7 +32,11 @@ public class CategoryController {
     @FXML
     public void initialize() {
         this.categoryModel = new CategoryModel();
-        this.categoryModel.init();
+        try {
+            this.categoryModel.init();
+        } catch (ApplicationException e) {
+            DialogsUtils.dialogError(e.getMessage());
+        }
         this.categoryComboBox.setItems(this.categoryModel.getCategoryList());
         initBindings();
     }
@@ -43,12 +48,20 @@ public class CategoryController {
     }
 
     public void addCategoryOnAction() {
-        categoryModel.saveCategoryInDataBase(categoryTextField.getText());
+        try {
+            categoryModel.saveCategoryInDataBase(categoryTextField.getText());
+        } catch (ApplicationException e) {
+            DialogsUtils.dialogError(e.getMessage());
+        }
         categoryTextField.clear();
     }
 
     public void deleteCategoryOnAction() {
-        this.categoryModel.deleteCategoryById();
+        try {
+            this.categoryModel.deleteCategoryById();
+        } catch (ApplicationException e) {
+            DialogsUtils.dialogError(e.getMessage());
+        }
     }
 
     public void onActionComboBo() {
@@ -57,9 +70,13 @@ public class CategoryController {
 
     public void editCategoryOnAction(ActionEvent actionEvent) {
         String newCategoryName = DialogsUtils.dialogEdit(this.categoryModel.getCategory().getName());
-        if(newCategoryName!= null) {
+        if (newCategoryName != null) {
             this.categoryModel.getCategory().setName(newCategoryName);
-            this.categoryModel.updateCategoryInDataBase();
+            try {
+                this.categoryModel.updateCategoryInDataBase();
+            } catch (ApplicationException e) {
+                DialogsUtils.dialogError(e.getMessage());
+            }
         }
 
     }

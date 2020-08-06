@@ -3,11 +3,13 @@ package application.modelfx;
 import application.database.dao.CategoryDao;
 import application.database.dbutils.DbManager;
 import application.database.models.Category;
+import application.utils.converters.CategoryConverter;
 import application.utils.exceptions.ApplicationException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
 
 import java.util.List;
 
@@ -15,18 +17,31 @@ public class CategoryModel {
 
     private ObservableList<CategoryFx> categoryList = FXCollections.observableArrayList();
     private ObjectProperty<CategoryFx> category = new SimpleObjectProperty<>();
+    private TreeItem<String> root = new TreeItem<>();
 
     public void init() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
         List<Category> categories = categoryDao.queryForAll(Category.class);
+        initCategoryList(categories);
+        initRoot(categories);
+        DbManager.closeConnectionSource();
+    }
+
+    private void initRoot(List<Category> categories) {
+        this.root.getChildren().clear();
+        categories.forEach(c->{
+            TreeItem<String> categoryItem = new TreeItem<>(c.getName());
+            c.getBooks().forEach(b-> categoryItem.getChildren().add(new TreeItem<>(b.getTitle())));
+            root.getChildren().add(categoryItem);
+        });
+    }
+
+    private void initCategoryList(List<Category> categories) {
         this.categoryList.clear();
         categories.forEach(c -> {
-            CategoryFx categoryFx = new CategoryFx();
-            categoryFx.setId(c.getId());
-            categoryFx.setName(c.getName());
+            CategoryFx categoryFx = CategoryConverter.convertToCategoryFx(c);
             this.categoryList.add(categoryFx);
         });
-        DbManager.closeConnectionSource();
     }
 
     public void deleteCategoryById() throws ApplicationException {
@@ -39,7 +54,7 @@ public class CategoryModel {
 
     public void updateCategoryInDataBase() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
-        Category tempCategory= categoryDao.findById(Category.class, getCategory().getId());
+        Category tempCategory = categoryDao.findById(Category.class, getCategory().getId());
         tempCategory.setName(getCategory().getName());
         categoryDao.createOrUpdate(tempCategory);
         DbManager.closeConnectionSource();
@@ -53,6 +68,14 @@ public class CategoryModel {
         categoryDao.createOrUpdate(category);
         DbManager.closeConnectionSource();
         init();
+    }
+
+    public TreeItem<String> getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeItem<String> root) {
+        this.root = root;
     }
 
     public ObservableList<CategoryFx> getCategoryList() {

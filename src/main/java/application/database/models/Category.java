@@ -1,19 +1,27 @@
+/*
+ * Copyright (c) 2020. Michał Parzych
+ * All rights reserved
+ */
+
 package application.database.models;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 
 @DatabaseTable(tableName = "CATEGORIES")
 public class Category implements BaseModel {
-    public Category() {
-    }
-
     @DatabaseField(generatedId = true)
     private int id;
-
     @DatabaseField(columnName = "NAME", canBeNull = false, unique = true)
     private String name;
+    @ForeignCollectionField(columnName = "BOOK_ID")
+    private ForeignCollection<Book> books;
+
+    public Category() {
+    }
 
     public int getId() {
         return id;
@@ -29,5 +37,13 @@ public class Category implements BaseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ForeignCollection<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ForeignCollection<Book> books) {
+        this.books = books;
     }
 }

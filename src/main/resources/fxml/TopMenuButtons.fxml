@@ -23,11 +23,20 @@
                <Image url="@../icons/book.png" />
             </ImageView>
          </graphic></Button>
-      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="32.0" prefWidth="150.0" text="%category.add">
+      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="32.0" prefWidth="150.0" text="%navigation.category.add">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/list.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="32.0" prefWidth="150.0" text="%navigation.author.add">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/author.png" />
                </image>
             </ImageView>
          </graphic>

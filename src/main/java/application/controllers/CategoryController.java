@@ -7,9 +7,7 @@ import application.utils.DialogsUtils;
 import application.utils.exceptions.ApplicationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class CategoryController {
 
@@ -20,6 +18,9 @@ public class CategoryController {
     public Button categoryEditButton;
 
     @FXML
+    public TreeView<String> categoryTreeView;
+
+    @FXML
     private Button categoryAddButton;
 
     @FXML
@@ -27,9 +28,9 @@ public class CategoryController {
 
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
+
     private CategoryModel categoryModel;
 
-    @FXML
     public void initialize() {
         this.categoryModel = new CategoryModel();
         try {
@@ -38,6 +39,7 @@ public class CategoryController {
             DialogsUtils.dialogError(e.getMessage());
         }
         this.categoryComboBox.setItems(this.categoryModel.getCategoryList());
+        this.categoryTreeView.setRoot(this.categoryModel.getRoot());
         initBindings();
     }
 

@@ -17,7 +17,7 @@ public class Author implements BaseModel {
     @DatabaseField(columnName = "NAME", canBeNull = false)
     private String name;
 
-    @DatabaseField(columnName = "SURNAME", canBeNull = false, unique = true)
+    @DatabaseField(columnName = "SURNAME", canBeNull = false)
     private String surname;
 
     @ForeignCollectionField(eager = true)

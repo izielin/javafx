@@ -16,17 +16,21 @@ public class Book implements BaseModel{
 
     @DatabaseField(columnName = "AUTHOR_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
     private Author author;
+
     @DatabaseField(columnName = "CATEGORY_ID", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
     private Category category;
 
     @DatabaseField(columnName = "TITTLE", canBeNull = false)
     private String title;
 
+    @DatabaseField(columnName = "DESCRIPTION")
+    private String description;
+
     @DatabaseField(columnName = "RELEASE_DATE")
     private Date releaseDate;
 
-    @DatabaseField(columnName = "ISBN", width = 1)
-    private long isbn;
+    @DatabaseField(columnName = "ISBN")
+    private String isbn;
 
     @DatabaseField(columnName = "RATING", width = 1)
     private int rating;
@@ -74,11 +78,11 @@ public class Book implements BaseModel{
         this.releaseDate = releaseDate;
     }
 
-    public long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -96,5 +100,13 @@ public class Book implements BaseModel{
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

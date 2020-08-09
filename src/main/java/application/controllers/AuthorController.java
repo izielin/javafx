@@ -9,6 +9,7 @@ import application.modelfx.AuthorFx;
 import application.modelfx.AuthorModel;
 import application.utils.DialogsUtils;
 import application.utils.exceptions.ApplicationException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -35,6 +36,9 @@ public class AuthorController {
 
     @FXML
     public MenuItem deleteMenuItem;
+
+    @FXML
+    public MenuItem showMenuItem;
 
 
     private AuthorModel authorModel;
@@ -102,5 +106,8 @@ public class AuthorController {
         } catch (ApplicationException e) {
             DialogsUtils.dialogError(e.getMessage());
         }
+    }
+
+    public void showBooksOnAction(ActionEvent actionEvent) {
     }
 }

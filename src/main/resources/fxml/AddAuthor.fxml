@@ -42,6 +42,7 @@
             <ContextMenu>
               <items>
                 <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteAuthorOnAction" text="%button.delete" />
+                <MenuItem fx:id="showMenuItem" mnemonicParsing="false" onAction="#showBooksOnAction" text="%author.menuItem" />
               </items>
             </ContextMenu>
          </contextMenu>

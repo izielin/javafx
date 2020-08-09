@@ -21,7 +21,7 @@ public class FillDatabase {
         book1.setCategory(category1);
         book1.setAuthor(author1);
         book1.setTitle("Makbet");
-        book1.setIsbn(8386740418l);
+        book1.setIsbn("8386740418l");
         book1.setRating(4);
         book1.setReleaseDate(new Date());
         book1.setAddedDate(new Date());
@@ -29,10 +29,9 @@ public class FillDatabase {
 
         Category category2 = new Category();
         category2.setName("Sensacja");
-        CategoryDao categoryDao = new CategoryDao(DbManager.getConnectionSource());
+        CategoryDao categoryDao = new CategoryDao();
         try {
             categoryDao.createOrUpdate(category2);
-            DbManager.closeConnectionSource();
         } catch (ApplicationException e) {
             e.printStackTrace();
         }
@@ -47,7 +46,7 @@ public class FillDatabase {
         book2.setCategory(category3);
         book2.setAuthor(author2);
         book2.setTitle("Gottland");
-        book2.setIsbn(9788380493483l);
+        book2.setIsbn("9788380493483l");
         book2.setRating(5);
         book2.setReleaseDate(new Date());
         book2.setAddedDate(new Date());
@@ -61,7 +60,7 @@ public class FillDatabase {
         book3.setCategory(category4);
         book3.setAuthor(author3);
         book3.setTitle("Władca Pierścieni");
-        book3.setIsbn(9788377582558l);
+        book3.setIsbn("9788377582558l");
         book3.setRating(5);
         book3.setReleaseDate(new Date());
         book3.setAddedDate(new Date());
@@ -73,12 +72,12 @@ public class FillDatabase {
         book4.setCategory(category4);
         book4.setAuthor(author3);
         book4.setTitle("Kolor magii");
-        book4.setIsbn(9788380493483l);
+        book4.setIsbn("9788380493483l");
         book4.setRating(3);
         book4.setReleaseDate(new Date());
         book4.setAddedDate(new Date());
 
-        BookDao bookDao = new BookDao(DbManager.getConnectionSource());
+        BookDao bookDao = new BookDao();
         try {
             bookDao.createOrUpdate(book1);
             bookDao.createOrUpdate(book2);
@@ -87,6 +86,5 @@ public class FillDatabase {
         } catch (ApplicationException e) {
             e.printStackTrace();
         }
-        DbManager.closeConnectionSource();
     }
 }

@@ -11,8 +11,8 @@ import java.time.LocalDate;
 
 public class BookFx {
     private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<CategoryFx> categoryFxObjectProperty = new SimpleObjectProperty<>();
-    private ObjectProperty<AuthorFx> authorFxObjectProperty = new SimpleObjectProperty<>();
+    private ObjectProperty<CategoryFx> categoryFx = new SimpleObjectProperty<>();
+    private ObjectProperty<AuthorFx> authorFx = new SimpleObjectProperty<>();
     private SimpleStringProperty title = new SimpleStringProperty();
     private SimpleStringProperty description = new SimpleStringProperty();
     private ObjectProperty<LocalDate> releaseDate = new SimpleObjectProperty<>();
@@ -32,28 +32,28 @@ public class BookFx {
         this.id.set(id);
     }
 
-    public CategoryFx getCategoryFxObjectProperty() {
-        return categoryFxObjectProperty.get();
+    public CategoryFx getCategoryFx() {
+        return categoryFx.get();
     }
 
-    public ObjectProperty<CategoryFx> categoryFxObjectPropertyProperty() {
-        return categoryFxObjectProperty;
+    public ObjectProperty<CategoryFx> categoryFxProperty() {
+        return categoryFx;
     }
 
-    public void setCategoryFxObjectProperty(CategoryFx categoryFxObjectProperty) {
-        this.categoryFxObjectProperty.set(categoryFxObjectProperty);
+    public void setCategoryFx(CategoryFx categoryFx) {
+        this.categoryFx.set(categoryFx);
     }
 
-    public AuthorFx getAuthorFxObjectProperty() {
-        return authorFxObjectProperty.get();
+    public AuthorFx getAuthorFx() {
+        return authorFx.get();
     }
 
-    public ObjectProperty<AuthorFx> authorFxObjectPropertyProperty() {
-        return authorFxObjectProperty;
+    public ObjectProperty<AuthorFx> authorFxProperty() {
+        return authorFx;
     }
 
-    public void setAuthorFxObjectProperty(AuthorFx authorFxObjectProperty) {
-        this.authorFxObjectProperty.set(authorFxObjectProperty);
+    public void setAuthorFx(AuthorFx authorFx) {
+        this.authorFx.set(authorFx);
     }
 
     public String getTitle() {

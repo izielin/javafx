@@ -25,6 +25,7 @@ public class FillDatabase {
         book1.setRating(4);
         book1.setReleaseDate(new Date());
         book1.setAddedDate(new Date());
+        book1.setDescription("Byłaby to fajna książka, gdyby nie była lekturą");
 
 
         Category category2 = new Category();
@@ -32,6 +33,7 @@ public class FillDatabase {
         CategoryDao categoryDao = new CategoryDao();
         try {
             categoryDao.createOrUpdate(category2);
+            DbManager.closeConnectionSource();
         } catch (ApplicationException e) {
             e.printStackTrace();
         }
@@ -46,10 +48,11 @@ public class FillDatabase {
         book2.setCategory(category3);
         book2.setAuthor(author2);
         book2.setTitle("Gottland");
-        book2.setIsbn("9788380493483l");
+        book2.setIsbn("8386740418l");
         book2.setRating(5);
         book2.setReleaseDate(new Date());
         book2.setAddedDate(new Date());
+        book2.setDescription("Ciekawe reportaże, ze świata");
 
         Category category4 = new Category();
         category4.setName("Fantastyka");
@@ -60,22 +63,24 @@ public class FillDatabase {
         book3.setCategory(category4);
         book3.setAuthor(author3);
         book3.setTitle("Władca Pierścieni");
-        book3.setIsbn("9788377582558l");
+        book3.setIsbn("8386740418l");
         book3.setRating(5);
         book3.setReleaseDate(new Date());
         book3.setAddedDate(new Date());
+        book3.setDescription("O dwóch takich, co nieśli pierścień");
 
         Author author4 = new Author();
         author4.setName("Terry ");
         author4.setSurname("Pratchett");
         Book book4 = new Book();
         book4.setCategory(category4);
-        book4.setAuthor(author3);
+        book4.setAuthor(author4);
         book4.setTitle("Kolor magii");
-        book4.setIsbn("9788380493483l");
+        book4.setIsbn("8386740418l");
         book4.setRating(3);
         book4.setReleaseDate(new Date());
         book4.setAddedDate(new Date());
+        book4.setDescription("Do przeczytania");
 
         BookDao bookDao = new BookDao();
         try {

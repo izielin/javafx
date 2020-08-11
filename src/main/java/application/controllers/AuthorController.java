@@ -17,28 +17,28 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class AuthorController {
 
     @FXML
-    public TextField authorNameTextField;
+    private TextField authorNameTextField;
 
     @FXML
-    public TextField authorSurnameTextField;
+    private TextField authorSurnameTextField;
 
     @FXML
-    public Button addButton;
+    private Button addButton;
 
     @FXML
-    public TableView<AuthorFx> authorTableView;
+    private TableView<AuthorFx> authorTableView;
 
     @FXML
-    public TableColumn<AuthorFx, String> nameColumn;
+    private TableColumn<AuthorFx, String> nameColumn;
 
     @FXML
-    public TableColumn<AuthorFx, String> surnameColumn;
+    private TableColumn<AuthorFx, String> surnameColumn;
 
     @FXML
-    public MenuItem deleteMenuItem;
+    private MenuItem deleteMenuItem;
 
     @FXML
-    public MenuItem showMenuItem;
+    private MenuItem showMenuItem;
 
 
     private AuthorModel authorModel;

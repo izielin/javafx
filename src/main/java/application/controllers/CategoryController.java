@@ -12,13 +12,13 @@ import javafx.scene.control.*;
 public class CategoryController {
 
     @FXML
-    public Button categoryDeleteButton;
+    private Button categoryDeleteButton;
 
     @FXML
-    public Button categoryEditButton;
+    private Button categoryEditButton;
 
     @FXML
-    public TreeView<String> categoryTreeView;
+    private TreeView<String> categoryTreeView;
 
     @FXML
     private Button categoryAddButton;

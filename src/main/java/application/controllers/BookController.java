@@ -53,8 +53,8 @@ public class BookController {
     private void bindings() {
         this.categoryComboBox.setItems(this.bookModel.getCategoryFxObservableList());
         this.authorComboBox.setItems(this.bookModel.getAuthorFxObservableList());
-        this.bookModel.getBookFxObjectProperty().categoryFxObjectPropertyProperty().bind(this.categoryComboBox.valueProperty());
-        this.bookModel.getBookFxObjectProperty().authorFxObjectPropertyProperty().bind(this.authorComboBox.valueProperty());
+        this.bookModel.getBookFxObjectProperty().categoryFxProperty().bind(this.categoryComboBox.valueProperty());
+        this.bookModel.getBookFxObjectProperty().authorFxProperty().bind(this.authorComboBox.valueProperty());
         this.bookModel.getBookFxObjectProperty().titleProperty().bind(this.titleTextField.textProperty());
         this.bookModel.getBookFxObjectProperty().descriptionProperty().bind(this.descriptionTextArea.textProperty());
         this.bookModel.getBookFxObjectProperty().ratingProperty().bind(this.ratingSlider.valueProperty());
@@ -65,8 +65,20 @@ public class BookController {
     public void addBookOnAction() {
         try {
             this.bookModel.saveBook();
+            clearFields();
         } catch (ApplicationException e) {
             DialogsUtils.dialogError(e.getMessage());
         }
     }
+
+    private void clearFields() {
+        this.authorComboBox.getSelectionModel().clearSelection();
+        this.categoryComboBox.getSelectionModel().clearSelection();
+        this.titleTextField.clear();
+        this.descriptionTextArea.clear();
+        this.ratingSlider.setValue(1);
+        this.isbnTextField.clear();
+        this.releaseDatePicker.getEditor().clear();
+    }
+
 }

@@ -6,8 +6,10 @@
 package application.modelfx;
 
 import application.database.dao.AuthorDao;
+import application.database.dao.BookDao;
 import application.database.dbutils.DbManager;
 import application.database.models.Author;
+import application.database.models.Book;
 import application.utils.converters.AuthorConverter;
 import application.utils.exceptions.ApplicationException;
 import javafx.beans.property.ObjectProperty;
@@ -15,6 +17,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class AuthorModel {
@@ -48,9 +51,12 @@ public class AuthorModel {
         this.init();
     }
 
-    public void deleteAuthor () throws ApplicationException {
+    public void deleteAuthor () throws ApplicationException, SQLException {
         AuthorDao authorDao = new AuthorDao();
-        authorDao.deleteById(Author.class, this.getAuthorFxObjectPropertyEdit().getId());
+        int authorId = this.getAuthorFxObjectPropertyEdit().getId();
+        authorDao.deleteById(Author.class, authorId);
+        BookDao bookDao = new BookDao();
+        bookDao.deleteByColumnName(Book.AUTHOR_ID, authorId);
         this.init();
     }
 

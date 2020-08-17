@@ -5,9 +5,13 @@ import application.modelfx.CategoryFx;
 import application.modelfx.CategoryModel;
 import application.utils.DialogsUtils;
 import application.utils.exceptions.ApplicationException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
+
+import java.sql.SQLException;
 
 public class CategoryController {
 
@@ -61,7 +65,7 @@ public class CategoryController {
     public void deleteCategoryOnAction() {
         try {
             this.categoryModel.deleteCategoryById();
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | SQLException e) {
             DialogsUtils.dialogError(e.getMessage());
         }
     }
@@ -70,7 +74,7 @@ public class CategoryController {
         this.categoryModel.setCategory(this.categoryComboBox.getSelectionModel().getSelectedItem());
     }
 
-    public void editCategoryOnAction(ActionEvent actionEvent) {
+    public void editCategoryOnAction() {
         String newCategoryName = DialogsUtils.dialogEdit(this.categoryModel.getCategory().getName());
         if (newCategoryName != null) {
             this.categoryModel.getCategory().setName(newCategoryName);

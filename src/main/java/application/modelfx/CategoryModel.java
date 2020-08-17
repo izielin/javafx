@@ -1,7 +1,9 @@
 package application.modelfx;
 
+import application.database.dao.BookDao;
 import application.database.dao.CategoryDao;
 import application.database.dbutils.DbManager;
+import application.database.models.Book;
 import application.database.models.Category;
 import application.utils.converters.CategoryConverter;
 import application.utils.exceptions.ApplicationException;
@@ -11,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryModel {
@@ -43,9 +46,12 @@ public class CategoryModel {
         });
     }
 
-    public void deleteCategoryById() throws ApplicationException {
+    public void deleteCategoryById() throws ApplicationException, SQLException {
         CategoryDao categoryDao = new CategoryDao();
-        categoryDao.deleteById(Category.class, category.getValue().getId());
+        int categoryId = category.getValue().getId();
+        categoryDao.deleteById(Category.class, categoryId);
+        BookDao bookDao = new BookDao();
+        bookDao.deleteByColumnName(Book.CATEGORY_ID, categoryId);
         init();
     }
 

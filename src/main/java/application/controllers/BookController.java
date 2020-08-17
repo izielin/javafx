@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class BookController {
+    public Button addButton;
+
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
 
@@ -48,18 +50,31 @@ public class BookController {
         }
 
         bindings();
+        validation();
     }
 
-    private void bindings() {
+    private void validation() {
+        this.addButton.disableProperty().bind(this.authorComboBox.valueProperty().isNull()
+                .or(this.categoryComboBox.valueProperty().isNull())
+                .or(this.titleTextField.textProperty().isEmpty())
+                .or(this.descriptionTextArea.textProperty().isEmpty())
+                .or(this.isbnTextField.textProperty().isEmpty())
+                .or(this.releaseDatePicker.valueProperty().isNull())
+
+        );
+    }
+
+    public void bindings() {
         this.categoryComboBox.setItems(this.bookModel.getCategoryFxObservableList());
         this.authorComboBox.setItems(this.bookModel.getAuthorFxObservableList());
-        this.bookModel.getBookFxObjectProperty().categoryFxProperty().bind(this.categoryComboBox.valueProperty());
-        this.bookModel.getBookFxObjectProperty().authorFxProperty().bind(this.authorComboBox.valueProperty());
-        this.bookModel.getBookFxObjectProperty().titleProperty().bind(this.titleTextField.textProperty());
-        this.bookModel.getBookFxObjectProperty().descriptionProperty().bind(this.descriptionTextArea.textProperty());
-        this.bookModel.getBookFxObjectProperty().ratingProperty().bind(this.ratingSlider.valueProperty());
-        this.bookModel.getBookFxObjectProperty().isbnProperty().bind(this.isbnTextField.textProperty());
-        this.bookModel.getBookFxObjectProperty().releaseDateProperty().bind(this.releaseDatePicker.valueProperty());
+
+        this.categoryComboBox.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().categoryFxProperty());
+        this.authorComboBox.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().authorFxProperty());
+        this.titleTextField.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().titleProperty());
+        this.descriptionTextArea.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().descriptionProperty());
+        this.ratingSlider.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().ratingProperty());
+        this.isbnTextField.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().isbnProperty());
+        this.releaseDatePicker.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().releaseDateProperty());
     }
 
     public void addBookOnAction() {
@@ -81,4 +96,7 @@ public class BookController {
         this.releaseDatePicker.getEditor().clear();
     }
 
+    public BookModel getBookModel() {
+        return bookModel;
+    }
 }

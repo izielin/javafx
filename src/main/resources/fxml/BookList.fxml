@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -21,10 +23,25 @@
             <children>
                 <Label text="%book.category" />
                 <ComboBox fx:id="categoryComboBox" onAction="#filerOnAction" prefWidth="150.0" />
-            <Button mnemonicParsing="false" onAction="#clearCategoryComboBox" text="x" />
+            <Button mnemonicParsing="false" onAction="#clearCategoryComboBox">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/times.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
                 <Label text="%book.author" />
                 <ComboBox fx:id="authorComboBox" onAction="#filerOnAction" prefWidth="150.0" />
-            <Button mnemonicParsing="false" onAction="#clearAuthorComboBox" text="x" />
+            <Button layoutX="306.0" layoutY="30.0" mnemonicParsing="false" onAction="#clearAuthorComboBox">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/times.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </HBox>
         <TableView fx:id="booksTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -36,6 +53,8 @@
                 <TableColumn fx:id="ratingColumn" prefWidth="75.0" text="%book.rating" />
                 <TableColumn fx:id="isbnColumn" prefWidth="75.0" text="%book.isbn" />
                 <TableColumn fx:id="releaseColumn" prefWidth="75.0" text="%book.releaseDate" />
+            <TableColumn fx:id="deleteColumn" prefWidth="75.0" style="-fx-alignment: CENTER;" text="%button.delete" />
+            <TableColumn fx:id="editColumn" prefWidth="75.0" style="-fx-alignment: CENTER;" text="%button.edit" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

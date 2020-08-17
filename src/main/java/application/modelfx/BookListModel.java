@@ -25,20 +25,27 @@ public class BookListModel {
     private ObservableList<CategoryFx> categoryFxObservableList = FXCollections.observableArrayList();
     private ObservableList<BookFx> bookFxObservableList = FXCollections.observableArrayList();
 
-    private ObjectProperty<AuthorFx> authorFxObjectProperty = new SimpleObjectProperty<>();
-    private ObjectProperty<CategoryFx> categoryFxObjectProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<AuthorFx> authorFxObjectProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<CategoryFx> categoryFxObjectProperty = new SimpleObjectProperty<>();
 
-    private List<BookFx> bookFxList = new ArrayList<>();
+    private final List<BookFx> bookFxList = new ArrayList<>();
 
     public void init() throws ApplicationException {
         BookDao bookDao = new BookDao();
         List<Book> books = bookDao.queryForAll(Book.class);
+        bookFxList.clear();
         books.forEach(book -> this.bookFxList.add(BookConverter.convertToBookFx(book)));
 
         this.bookFxObservableList.setAll(bookFxList);
 
         Initializers.initAuthorList(authorFxObservableList);
         Initializers.initCategoryList(categoryFxObservableList);
+    }
+
+    public void deleteBook(BookFx item) throws ApplicationException {
+        BookDao bookDao = new BookDao();
+        bookDao.deleteById(Book.class, item.getId());
+        init();
     }
 
     public void filterBookList() {
@@ -113,4 +120,5 @@ public class BookListModel {
     public ObjectProperty<CategoryFx> categoryFxObjectPropertyProperty() {
         return categoryFxObjectProperty;
     }
+
 }

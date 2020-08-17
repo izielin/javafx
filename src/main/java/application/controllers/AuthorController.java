@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.sql.SQLException;
+
 public class AuthorController {
 
     @FXML
@@ -103,7 +105,7 @@ public class AuthorController {
     public void deleteAuthorOnAction() {
         try {
             this.authorModel.deleteAuthor();
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | SQLException e) {
             DialogsUtils.dialogError(e.getMessage());
         }
     }
